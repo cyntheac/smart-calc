@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/new/lala">
+        <file>SpyBot.qss</file>
+    </qresource>
+</RCC>

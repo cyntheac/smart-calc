@@ -1,0 +1,149 @@
+#include "../source/backend.h"
+#include <math.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+
+#test notation_1
+char *str = malloc(50 * sizeof(char));
+strcpy(str, "12.2345 + (-235)");
+char true_res[50] = "-222.765500";
+char *my_res = get_result(str, strlen(str));
+ck_assert_str_eq(true_res, my_res);
+free(my_res);
+free(str);
+
+#test notation_2
+char *str = malloc(50 * sizeof(char));
+strcpy(str, "wdedwedwedwed");
+char true_res[50] = "check input dude";
+char *my_res = get_result(str, strlen(str));
+ck_assert_str_eq(true_res, my_res);
+free(my_res);
+free(str);
+
+#test notation_3
+char *str = malloc(50 * sizeof(char));
+strcpy(str, "2 / 0");
+char true_res[50] = "infinity";
+char *my_res = get_result(str, strlen(str));
+ck_assert_str_eq(true_res, my_res);
+free(my_res);
+free(str);
+
+#test notation_4
+char *str = malloc(50 * sizeof(char));
+strcpy(str, "2-*3");
+char true_res[50] = "check input dude";
+char *my_res = get_result(str, strlen(str));
+ck_assert_str_eq(true_res, my_res);
+free(my_res);
+free(str);
+
+#test notation_5
+char *str = malloc(50 * sizeof(char));
+strcpy(str, "/10");
+char true_res[50] = "check input dude";
+char *my_res = get_result(str, strlen(str));
+ck_assert_str_eq(true_res, my_res);
+free(my_res);
+free(str);
+
+#test notation_6
+char *str = malloc(50 * sizeof(char));
+strcpy(str, "5(");
+char true_res[50] = "check input dude";
+char *my_res = get_result(str, strlen(str));
+ck_assert_str_eq(true_res, my_res);
+make_me_free(my_res);
+free(str);
+
+#test notation_7
+char *str = malloc(50 * sizeof(char));
+strcpy(str, "sint(x)");
+char true_res[50] = "check input dude";
+char *my_res = get_result(str, strlen(str));
+ck_assert_str_eq(true_res, my_res);
+free(my_res);
+free(str);
+
+#test notation_8
+char *str = malloc(50 * sizeof(char));
+strcpy(str, "3.456mor234");
+char true_res[50] = "check input dude";
+char *my_res = get_result(str, strlen(str));
+ck_assert_str_eq(true_res, my_res);
+free(my_res);
+free(str);
+
+#test notation_9
+char *str = malloc(50 * sizeof(char));
+strcpy(str, "tin(x)");
+char true_res[50] = "check input dude";
+char *my_res = get_result(str, strlen(str));
+ck_assert_str_eq(true_res, my_res);
+free(my_res);
+free(str);
+
+#test notation_10
+char *str = malloc(50 * sizeof(char));
+strcpy(str, "sqvt(x)");
+char true_res[50] = "check input dude";
+char *my_res = get_result(str, strlen(str));
+ck_assert_str_eq(true_res, my_res);
+free(my_res);
+free(str);
+
+#test notation_11
+char *str = malloc(50 * sizeof(char));
+strcpy(str, "sit(x)");
+char true_res[50] = "check input dude";
+char *my_res = get_result(str, strlen(str));
+ck_assert_str_eq(true_res, my_res);
+free(my_res);
+free(str);
+
+#test notation_12
+char *str = malloc(50 * sizeof(char));
+strcpy(str, "sqrv(x)");
+char true_res[50] = "check input dude";
+char *my_res = get_result(str, strlen(str));
+ck_assert_str_eq(true_res, my_res);
+free(my_res);
+free(str);
+
+#test notation_13
+char *str = malloc(50 * sizeof(char));
+strcpy(str, "(12 + 8))");
+char true_res[50] = "check input dude";
+char *my_res = get_result(str, strlen(str));
+ck_assert_str_eq(true_res, my_res);
+free(my_res);
+free(str);
+
+#test notation_14
+char *str = malloc(50 * sizeof(char));
+strcpy(str, "tan(3.3) + cos(1)");
+char true_res[50] = "0.700048";
+char *my_res = get_result(str, strlen(str));
+ck_assert_str_eq(true_res, my_res);
+free(my_res);
+free(str);
+
+#test notation_15
+char *str = malloc(50 * sizeof(char));
+strcpy(str, "atan(3.3) + sqrt(2)");
+char true_res[50] = "2.690775";
+char *my_res = get_result(str, strlen(str));
+ck_assert_str_eq(true_res, my_res);
+free(my_res);
+free(str);
+
+#test notation_16
+char *str = malloc(50 * sizeof(char));
+strcpy(str, "125mod14.234/log(16)");
+char true_res[50] = "9.241604";
+char *my_res = get_result(str, strlen(str));
+ck_assert_str_eq(true_res, my_res);
+free(my_res);
+free(str);

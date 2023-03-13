@@ -23,5 +23,3 @@ void pop(stack_rpn **stack) {
     *stack = tmp->NEXT;
     free(tmp);
 }
-
-
