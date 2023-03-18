@@ -22,7 +22,7 @@ void parserNumbers(stackRPN* stack, char* expression, int* lenNum) {
         buffNum[counterLen] = '\0';
     }
     *lenNum = counterLen;
-    push(&stack, atof(buffNum), '_', number);
+    push(&stack, atof(buffNum), ' ', number);
 }
 
 void parserElementExpression(char* expression, stackRPN* stack, bool* stackIsValid) {
@@ -34,9 +34,9 @@ void parserElementExpression(char* expression, stackRPN* stack, bool* stackIsVal
         } else if (strchr(LITE_LEXEMES, *expression)) {
             parserLiteLexes(stack, *expression);
             expression++;
-        // } 
-        // else if (strchr(HARD_LEXEMES, *expression)) {
-        //     int a;
+        } 
+        else if (strchr(HARD_LEXEMES, *expression)) {
+            printf("HARD_LEXEMES\n");  // заглушка
         } else {
             *stackIsValid = false;
             break;

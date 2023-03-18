@@ -24,7 +24,6 @@ void pop(stackRPN** stack) {
     free(tmp);
 }
 
-
 void freeStack(stackRPN** stack) {
     while (stack) {
         pop(stack);
