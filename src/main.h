@@ -25,8 +25,8 @@ void pop(stackRPN **stack);
 void freeStack(stackRPN **stack);
 
 void parserExpression(char* expression, stackRPN* RPN);
-void translationRPN(stackRPN* stack, stackRPN* RPN);
-void calculationRPN(stackRPN* RPN);
+// void translationRPN(stackRPN* stack, stackRPN* RPN);
+// void calculationRPN(stackRPN* RPN);
 bool StackIsEmpty(stackRPN* stack);
 
 #endif  // SRC_MAIN_

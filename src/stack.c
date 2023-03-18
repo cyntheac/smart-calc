@@ -18,16 +18,16 @@ void push(stackRPN **stack, double operand, char operator, type_priority type) {
     *stack = newNode;
 }
 
-void pop(stackRPN **stack) {
+void pop(stackRPN** stack) {
     stackRPN *tmp = *stack;
     *stack = tmp->next;
     free(tmp);
 }
 
 
-void freeStack(stackRPN **stack) {
+void freeStack(stackRPN** stack) {
     while (stack) {
-        pop(&stack);
+        pop(stack);
     }
 }
 
