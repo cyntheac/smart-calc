@@ -35,10 +35,10 @@ void parserElementExpression(char* expression, stackRPN* stack, bool* stackIsVal
 void parserExpression(char* expression, stackRPN* RPN);
 
 // подпрограммы перевода в ОПН
-void translationRPN(stackRPN* stack, stackRPN* RPN);
+// void translationRPN(stackRPN* stack, stackRPN* RPN);
 
 // подпрограммы калькулятора ОПН
-void calculationRPN(stackRPN* RPN);
+// void calculationRPN(stackRPN* RPN);
 
 
 #endif  // SRC_MAIN_

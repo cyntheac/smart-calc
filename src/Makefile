@@ -4,7 +4,8 @@ CFLAGS =-Wall -Werror -Wextra -pedantic
 all: build
 
 build:
-	$(CC) $(CFLAGS) main.c parser.c calculate.c translate.c stack.c main.h -o main
+	$(CC) $(CFLAGS) main.c parser.c stack.c main.h -o main
+	# $(CC) $(CFLAGS) main.c parser.c calculate.c translate.c stack.c main.h -o main
 
 rebuild: clean all
 

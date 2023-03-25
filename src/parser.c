@@ -19,27 +19,31 @@ void parserNumbers(stackRPN* stack, char* expression, int* lenNum) {
         buffNum[counterLen] = *expression;
         counterLen++;
         expression++;
-        buffNum[counterLen] = '\0';
     }
+    buffNum[counterLen] = '\0';
     *lenNum = counterLen;
     push(&stack, atof(buffNum), ' ', number);
+
 }
 
 void parserElementExpression(char* expression, stackRPN* stack, bool* stackIsValid) {
     while (*expression) {
         if (strchr(NUMBERS, *expression)) {
-            int* lenNum = NULL;
-            parserNumbers(stack, expression, lenNum);
-            expression += *lenNum;
+            int lenNum = 0;
+            parserNumbers(stack, expression, &lenNum);
+            expression += lenNum;
         } else if (strchr(LITE_LEXEMES, *expression)) {
             parserLiteLexes(stack, *expression);
             expression++;
-        } 
-        else if (strchr(HARD_LEXEMES, *expression)) {
+        } else if (strchr(HARD_LEXEMES, *expression)) {
             printf("HARD_LEXEMES\n");  // заглушка
+            expression++;
         } else {
             *stackIsValid = false;
             break;
+        }
+        while (stack) {
+            printf("!\n");
         }
     }
 }
