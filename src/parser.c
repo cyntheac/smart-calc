@@ -1,18 +1,18 @@
 #include "main.h"
 
-void parserLiteLexes(stackRPN* stack, char operator) {
+void parserLiteLexes(stackRPN** stack, char operator) {
     switch (operator) {
-        case '-': push(&stack, 0, operator, plus_minus);    break;
-        case '+': push(&stack, 0, operator, plus_minus);    break;
-        case '/': push(&stack, 0, operator, mult_div);      break;
-        case '*': push(&stack, 0, operator, mult_div);      break;
-        case '^': push(&stack, 0, operator, exponent);      break;
-        case '(': push(&stack, 0, operator, Lbr);           break;
-        case ')': push(&stack, 0, operator, Rbr);           break;
+        case '-': push(stack, 0, operator, plus_minus);    break;
+        case '+': push(stack, 0, operator, plus_minus);    break;
+        case '/': push(stack, 0, operator, mult_div);      break;
+        case '*': push(stack, 0, operator, mult_div);      break;
+        case '^': push(stack, 0, operator, exponent);      break;
+        case '(': push(stack, 0, operator, Lbr);           break;
+        case ')': push(stack, 0, operator, Rbr);           break;
     }
 }
 
-void parserNumbers(stackRPN* stack, char* expression, int* lenNum) {
+void parserNumbers(stackRPN** stack, char* expression, int* lenNum) {
     char buffNum[256];
     int counterLen = 0;
     while (*expression && strchr(NUMBERS, *expression)) {
@@ -22,11 +22,11 @@ void parserNumbers(stackRPN* stack, char* expression, int* lenNum) {
     }
     buffNum[counterLen] = '\0';
     *lenNum = counterLen;
-    push(&stack, atof(buffNum), ' ', number);
+    push(stack, atof(buffNum), ' ', number);
 
 }
 
-void parserElementExpression(char* expression, stackRPN* stack, bool* stackIsValid) {
+void parserElementExpression(char* expression, stackRPN** stack, bool* stackIsValid) {
     while (*expression) {
         if (strchr(NUMBERS, *expression)) {
             int lenNum = 0;
@@ -42,16 +42,13 @@ void parserElementExpression(char* expression, stackRPN* stack, bool* stackIsVal
             *stackIsValid = false;
             break;
         }
-        while (stack) {
-            printf("!\n");
-        }
     }
 }
 
-void parserExpression(char* expression, stackRPN* stack) {
+void parserExpression(char* expression, stackRPN** stack) {
     bool stackIsValid = true;
     parserElementExpression(expression, stack, &stackIsValid);
     if (!stackIsValid) {
-        freeStack(&stack);
+        freeStack(stack);
     }
 }

@@ -19,17 +19,20 @@ void push(stackRPN **stack, double operand, char operator, type_priority type) {
 }
 
 void pop(stackRPN** stack) {
+    // while(stack) {
+    //     printf("!\n");
+    // }
     stackRPN *tmp = *stack;
     *stack = tmp->next;
     free(tmp);
 }
 
 void freeStack(stackRPN** stack) {
-    while (stack) {
+    while (*stack) {
         pop(stack);
     }
 }
 
-bool StackIsEmpty(stackRPN* stack) {
+bool stackIsEmpty(stackRPN* stack) {
     return stack == NULL;
 }

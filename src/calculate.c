@@ -1,5 +1,7 @@
 #include "main.h"
 
 void calculationRPN(stackRPN* RPN) {
-    printf("calculationRPN\n");  // заглушка
+    if (RPN) {
+        printf("1calculationRPN\n");  // заглушка
+    }
 }

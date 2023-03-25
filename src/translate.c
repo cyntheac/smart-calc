@@ -1,5 +1,10 @@
 #include "main.h"
 
 void translationRPN(stackRPN* stack, stackRPN* RPN) {
-    printf("translationRPN\n");  // заглушка
+    if (stack) {
+        printf("1translationRPN\n");  // заглушка
+    }
+    if (RPN) {
+        printf("2translationRPN\n");  // заглушка
+    }   
 }

@@ -26,19 +26,19 @@ stackRPN *createNode(double operand, char operator, type_priority type);
 void push(stackRPN **stack, double operand, char operator, type_priority type);
 void pop(stackRPN **stack);
 void freeStack(stackRPN **stack);
-bool StackIsEmpty(stackRPN* stack);
+bool stackIsEmpty(stackRPN* stack);
 
 // подрограммы парсера
-void parserLiteLexes(stackRPN* stack, char operator);
-void parserNumbers(stackRPN* stack, char* expression, int* lenNum);
-void parserElementExpression(char* expression, stackRPN* stack, bool* stackIsValid);
-void parserExpression(char* expression, stackRPN* RPN);
+void parserLiteLexes(stackRPN** stack, char operator);
+void parserNumbers(stackRPN** stack, char* expression, int* lenNum);
+void parserElementExpression(char* expression, stackRPN** stack, bool* stackIsValid);
+void parserExpression(char* expression, stackRPN** RPN);
 
 // подпрограммы перевода в ОПН
-// void translationRPN(stackRPN* stack, stackRPN* RPN);
+void translationRPN(stackRPN* stack, stackRPN* RPN);
 
 // подпрограммы калькулятора ОПН
-// void calculationRPN(stackRPN* RPN);
+void calculationRPN(stackRPN* RPN);
 
 
 #endif  // SRC_MAIN_
