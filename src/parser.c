@@ -1,47 +1,59 @@
 #include "main.h"
 
+
+void initBuff(char* buff, char* expression, char* category, int* lenElement) {
+    int counterLen = 0;
+    while (*expression && strchr(category, *expression)) {
+        buff[counterLen] = *expression;
+        counterLen++;
+        expression++;
+    }
+    buff[counterLen] = '\0';
+    *lenElement = counterLen;
+}
+
+void parserHardLexes(stackRPN** stack, char* expression, int* lenLex, bool* validLex) {
+    char buffLex[256];
+    initBuff(buffLex, expression, HARD_LEXEMES, lenLex);
+    if (strstr(FUNCTIONS, buffLex)) {
+        push(stack, 0, ' ', buffLex, function);
+    } else {
+        printf("ss\n");
+        *validLex = false;
+    }
+}
+
 void parserLiteLexes(stackRPN** stack, char operator) {
     switch (operator) {
-        case '-': push(stack, 0, operator, plus_minus);    break;
-        case '+': push(stack, 0, operator, plus_minus);    break;
-        case '/': push(stack, 0, operator, mult_div);      break;
-        case '*': push(stack, 0, operator, mult_div);      break;
-        case '^': push(stack, 0, operator, exponent);      break;
-        case '(': push(stack, 0, operator, Lbr);           break;
-        case ')': push(stack, 0, operator, Rbr);           break;
+        case '-': push(stack, 0, operator, NULL, plus_minus);    break;
+        case '+': push(stack, 0, operator, NULL, plus_minus);    break;
+        case '/': push(stack, 0, operator, NULL, mult_div);      break;
+        case '*': push(stack, 0, operator, NULL, mult_div);      break;
+        case '^': push(stack, 0, operator, NULL, exponent);      break;
+        case '(': push(stack, 0, operator, NULL, Lbr);           break;
+        case ')': push(stack, 0, operator, NULL, Rbr);           break;
     }
 }
 
 void parserNumbers(stackRPN** stack, char* expression, int* lenNum) {
     char buffNum[256];
-    int counterLen = 0;
-    while (*expression && strchr(NUMBERS, *expression)) {
-        buffNum[counterLen] = *expression;
-        counterLen++;
-        expression++;
-    }
-    buffNum[counterLen] = '\0';
-    *lenNum = counterLen;
-    push(stack, atof(buffNum), ' ', number);
-
+    initBuff(buffNum, expression, NUMBERS, lenNum);
+    push(stack, atof(buffNum), ' ', NULL, number);
 }
 
 void parserElementExpression(char* expression, stackRPN** stack, bool* stackIsValid) {
-    while (*expression) {
+    while (*expression && *stackIsValid) {
+        int lenElement = 1;
         if (strchr(NUMBERS, *expression)) {
-            int lenNum = 0;
-            parserNumbers(stack, expression, &lenNum);
-            expression += lenNum;
+            parserNumbers(stack, expression, &lenElement);
         } else if (strchr(LITE_LEXEMES, *expression)) {
             parserLiteLexes(stack, *expression);
-            expression++;
         } else if (strchr(HARD_LEXEMES, *expression)) {
-            printf("HARD_LEXEMES\n");  // заглушка
-            expression++;
+            parserHardLexes(stack, expression, &lenElement, stackIsValid);
         } else {
             *stackIsValid = false;
-            break;
         }
+        expression += lenElement;
     }
 }
 

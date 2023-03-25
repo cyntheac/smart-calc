@@ -9,5 +9,3 @@ build:
 rebuild: clean all
 
 clean: rm -rf main
-
-

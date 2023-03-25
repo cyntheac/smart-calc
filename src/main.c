@@ -10,9 +10,11 @@ int main() {
     parserExpression(expression, &stack);
     if (!stackIsEmpty(stack)) {
         translationRPN(stack, RPN);
+        freeStack(&stack);
     }
     if (!stackIsEmpty(RPN)) {
         calculationRPN(RPN);
+        freeStack(&RPN);
     }
     return 0;
 }
