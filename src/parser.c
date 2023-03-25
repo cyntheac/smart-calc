@@ -1,7 +1,6 @@
 #include "main.h"
 
-
-void initBuff(char* buff, char* expression, char* category, int* lenElement) {
+void initBuffAndLenElem(char* buff, char* expression, char* category, int* lenElement) {
     int counterLen = 0;
     while (*expression && strchr(category, *expression)) {
         buff[counterLen] = *expression;
@@ -14,11 +13,11 @@ void initBuff(char* buff, char* expression, char* category, int* lenElement) {
 
 void parserHardLexes(stackRPN** stack, char* expression, int* lenLex, bool* validLex) {
     char buffLex[256];
-    initBuff(buffLex, expression, HARD_LEXEMES, lenLex);
+    initBuffAndLenElem(buffLex, expression, HARD_LEXEMES, lenLex);
     if (strstr(FUNCTIONS, buffLex)) {
         push(stack, 0, ' ', buffLex, function);
     } else {
-        printf("ss\n");
+        printf("(1)CHECK ERROR, PLS\n");
         *validLex = false;
     }
 }
@@ -37,7 +36,7 @@ void parserLiteLexes(stackRPN** stack, char operator) {
 
 void parserNumbers(stackRPN** stack, char* expression, int* lenNum) {
     char buffNum[256];
-    initBuff(buffNum, expression, NUMBERS, lenNum);
+    initBuffAndLenElem(buffNum, expression, NUMBERS, lenNum);
     push(stack, atof(buffNum), ' ', NULL, number);
 }
 

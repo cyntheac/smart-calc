@@ -18,7 +18,7 @@ typedef enum {number, Lbr, Rbr, function, exponent, mult_div, plus_minus} type_p
 typedef struct stack_for_RPN {
     double operand;
     char operator;
-    char* function;
+    char function[5];
     type_priority type;
     struct stack_for_RPN* next;
 } stackRPN;

@@ -9,6 +9,10 @@ int main() {
     scanf("%s", expression);
     parserExpression(expression, &stack);
     if (!stackIsEmpty(stack)) {
+        while (stack) {
+            printf("num: %lf, oper: %c, func: %s\n", stack->operand, stack->operator, stack->function);
+            pop(&stack);
+        }
         translationRPN(stack, RPN);
         freeStack(&stack);
     }

@@ -7,7 +7,10 @@ stackRPN *createNode(double operand, char operator, char* function, type_priorit
     }
     node->operand = operand;
     node->operator = operator;
-    node->function = function;
+    // node->function[0] = '\0';
+    if (function) {
+        memcpy(node->function, function, strlen(function));
+    }
     node->type = type;
     node->next = NULL;
     return node;
