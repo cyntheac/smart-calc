@@ -2,12 +2,13 @@
 
 int main() {
     // обязательно ли руками выдавать память для каждого символа в дин.массиве?
+    // необходимо доработать, временно статик
+    // char* expression = NULL; 
     char expression[256];
-    // char* expression = NULL;
     stackRPN* stack = NULL;
     stackRPN* revStack = NULL;
     stackRPN* RPN = NULL;
-    
+
     scanf("%s", expression);
     parserExpression(expression, &stack);
     if (!stackIsEmpty(stack)) {
@@ -17,7 +18,7 @@ int main() {
             printf("num: %lf, oper: %c, func: %s\n", revStack->operand, revStack->operator, revStack->function);
             pop(&revStack);
         }
-        translationRPN(revStack, RPN);
+        // translationRPN(revStack, RPN);
         freeStack(&revStack);
     }
     if (!stackIsEmpty(RPN)) {
