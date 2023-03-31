@@ -37,3 +37,12 @@ void freeStack(stackRPN** stack) {
 bool stackIsEmpty(stackRPN* stack) {
     return stack == NULL;
 }
+
+void reverseStack(stackRPN* stackSrc, stackRPN** stackDst) {
+    while (stackSrc) {
+        push(stackDst, stackSrc->operand, stackSrc->operator, stackSrc->function, stackSrc->type);
+        pop(&stackSrc);
+    }
+    // нужно ли чистить, если мы уже всё забрали?
+    freeStack(&stackSrc);
+}

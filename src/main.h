@@ -1,6 +1,11 @@
 #ifndef SRC_MAIN_
 #define SRC_MAIN_
 
+////////////////////////////////////////////////////////////////// 
+// ВАЖНО!
+// Это полная грязь, должны быть разные h файлы для каждой сущности
+//////////////////////////////////////////////////////////////////
+
 // библиотеки
 #include <stdio.h>
 #include <stdlib.h>
@@ -24,13 +29,16 @@ typedef struct stack_for_RPN {
 } stackRPN;
 
 // подпрограммы стека
+// скрываю от main.c внутр.подпрограммы
 // stackRPN *createNode(double operand, char operator, char* function, type_priority type);
 void push(stackRPN **stack, double operand, char operator, char* function, type_priority type);
 void pop(stackRPN **stack);
 void freeStack(stackRPN **stack);
 bool stackIsEmpty(stackRPN* stack);
+void reverseStack(stackRPN* stackSrc, stackRPN** stackDst);
 
 // подрограммы парсера
+// скрываю от main.c внутр.подпрограммы
 // void parserHardLexes(stackRPN** stack, char* expression, int* lenLex, bool* validLex);
 // void parserLiteLexes(stackRPN** stack, char operator);
 // void parserNumbers(stackRPN** stack, char* expression, int* lenNum);
